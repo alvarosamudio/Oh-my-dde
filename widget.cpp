@@ -46,7 +46,7 @@ Widget::Widget(DBlurEffectWidget *parent) :
 
     QMenu *tmenu=new QMenu;
     QAction *rewg=new QAction;
-    rewg->setText("重启文件管理器");
+    rewg->setText(tr("Restart file manager"));
     tmenu->addAction(rewg);
     ui->titlebar->setMenu(tmenu);
 
@@ -62,7 +62,7 @@ Widget::~Widget()
 void Widget::initUI()
 {
     // ui初始化
-    setMaskAlpha(180);
+    setMaskAlpha(220);
     ui->stackedWidget->setCurrentIndex(0);
     ui->icon->setPixmap(QIcon::fromTheme("youjian").pixmap(70,70));
     ui->titlebar->setFixedHeight(50);
@@ -92,6 +92,7 @@ void Widget::setTheme(bool isDark,QColor color)
         QPalette palette = ui->label_3->palette();
         palette.setColor(QPalette::Window,QColor("#282828"));
         palette.setColor(QPalette::Base,QColor("#282828"));
+        ui->scrollArea_3->setPalette(palette);
         ui->titlebar->setPalette(palette);
         QPalette palette1 = ui->line->palette();
         palette1.setColor(QPalette::Light,QColor("#282929"));
@@ -104,6 +105,7 @@ void Widget::setTheme(bool isDark,QColor color)
         QPalette palette = ui->label_3->palette();
         palette.setColor(QPalette::Window,QColor("#FFFFFF"));
         palette.setColor(QPalette::Base,QColor("#FFFFFF"));
+        ui->scrollArea_3->setPalette(palette);
         ui->titlebar->setPalette(palette);
         QPalette palette1 = ui->line->palette();
         palette1.setColor(QPalette::Light,QColor("#EBEBEB"));
@@ -153,6 +155,7 @@ void Widget::updateUI()
         left_list[2]->setIcon(QIcon(":/icons/icons/cyml_dark.svg"));
         break;
     }
+    left_list[nowMenu]->setStyleSheet("color:#FFFFFF;background-color:"+main_color.name()+";border-radius:8;border:0px");
 }
 
 // 菜单切换逻辑
@@ -160,7 +163,6 @@ void Widget::chooseLeftMenu(int index)
 {
     nowMenu=index;
     updateUI();
-    left_list[index]->setStyleSheet("color:#FFFFFF;background-color:"+main_color.name()+";border-radius:8;border:0px");
 
     ui->stackedWidget->setCurrentIndex(nowMenu);
 }

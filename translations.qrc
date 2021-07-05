@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>translations/oh-my-dde_es.qm</file>
+        <file>translations/oh-my-dde_zh_CN.qm</file>
+    </qresource>
+</RCC>

@@ -24,6 +24,38 @@ SystemUiPage::SystemUiPage(QWidget *parent) :
         m_qprocess->start("gsettings set com.deepin.dde.launcher apps-icon-ratio "+text);
     });
 
+    //dock模式切换
+    m_qprocess->start("gsettings get com.deepin.dde.dock display-mode");
+    m_qprocess->waitForFinished();
+    output=m_qprocess->readAll();
+    output.remove("\n");
+    output.remove(" ");
+    output.remove("\t");
+    output.remove("file://");
+    if(output=="'classic'")
+    {
+        ui->comboBox->setCurrentIndex(2);
+    }else if(output=="'fashion'")
+    {
+        ui->comboBox->setCurrentIndex(0);
+    }else if(output=="'efficient'")
+    {
+        ui->comboBox->setCurrentIndex(1);
+    }
+    connect(ui->comboBox, static_cast<void (QComboBox::*)(int index)>(&QComboBox::currentIndexChanged),[=](const int &index)
+    {
+        switch (index) {
+        case 0:
+            m_qprocess->start("gsettings set com.deepin.dde.dock display-mode 'fashion'");
+            break;
+        case 1:
+            m_qprocess->start("gsettings set com.deepin.dde.dock display-mode 'efficient'");
+            break;
+        case 2:
+            m_qprocess->start("gsettings set com.deepin.dde.dock display-mode 'classic'");
+            break;
+        }
+    });
 
     //系统圆角大小
     m_qprocess->start("gsettings get com.deepin.xsettings dtk-window-radius");

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Exec=/opt/apps/top.yzzi.youjian/files/unpkgdeb.sh %F
+GenericName=解包(deb)到当前目录
+MimeType=application/vnd.debian.binary-package;application/x-deb;
+Name=解包(deb)到当前目录
+Type=Application
+X-Deepin-Vendor=user-custom
+X-DFM-SupportSchemes=file
+X-DFM-MenuTypes=SingleFile

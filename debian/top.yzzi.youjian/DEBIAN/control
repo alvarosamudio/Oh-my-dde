@@ -1,10 +1,10 @@
 Package: top.yzzi.youjian
-Version: 1.0.0
+Version: 1.0.1
 Architecture: amd64
-Maintainer: ”yzzi” <”admin@yzzi.top”>
-Installed-Size: 190
+Maintainer: ”yzzi” <”admin@yzzi.icu”>
+Installed-Size: 195
 Depends: xautomation, xclip, gsettings-desktop-schemas, libdtkwidget5
 Section: utils
 Priority: optional
-Homepage: https://www.yuque.com/mvip9k
+Homepage: https://www.yzzi.icu
 Description: Oh my dde

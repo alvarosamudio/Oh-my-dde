@@ -2,6 +2,7 @@
 #define SYSTEMUIPAGE_H
 
 #include <QWidget>
+#include <QComboBox>
 #include <DSwitchButton>
 DWIDGET_USE_NAMESPACE
 namespace Ui {

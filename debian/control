@@ -1,10 +1,10 @@
 Source: top.yzzi.youjian
 Section: utils
 Priority: optional
-Maintainer: ”yzzi” <”admin@yzzi.top”>
+Maintainer: ”yzzi” <”admin@yzzi.icu”>
 Build-Depends: debhelper (>= 11), qt5-qmake, qttools5-dev-tools, libdtkwidget-dev, gsettings-desktop-schemas
 Standards-Version: 4.1.3
-Homepage: https://www.yuque.com/mvip9k
+Homepage: https://www.yzzi.icu
 
 Package: top.yzzi.youjian
 Architecture: any

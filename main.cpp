@@ -4,6 +4,7 @@
 #include <widget.h>
 #include <QTranslator>
 #include <DAboutDialog>
+
 DWIDGET_USE_NAMESPACE
 int main(int argc, char *argv[])
 {
@@ -11,7 +12,18 @@ int main(int argc, char *argv[])
     DApplication a(argc, argv);
     DAboutDialog dialog;
     a.setAttribute(Qt::AA_UseHighDpiPixmaps);
+
+    QTranslator translator;
+    QString locale = QLocale::system().name();
+    translator.load(QString("oh-my-dde_") + locale,":/translations");
+    a.installTranslator(&translator);
+
     a.loadTranslator();
+    // loadTranslator() only find translation from follows path:
+    // ~/.local/share/APPNAME/translations;
+    // /usr/local/share/APPNAME/translations;
+    // /usr/share/APPNAME/translations;
+    
     a.setAboutDialog(&dialog);
     Widget w;
     w.setWindowFlags(w.windowFlags() &~ Qt::WindowMaximizeButtonHint);

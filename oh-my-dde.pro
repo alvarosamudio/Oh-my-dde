@@ -48,6 +48,7 @@ FORMS += \
     systemuipage.ui
 
 RESOURCES += \
-    icons.qrc
+    icons.qrc \
+    translations.qrc
 
 DISTFILES +=

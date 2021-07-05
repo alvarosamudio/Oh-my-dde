@@ -13,5 +13,6 @@
         <file>kjfs/Show.desktop</file>
         <file>kjfs/del.desktop</file>
         <file>kjfs/copyfilepath.desktop</file>
+        <file>kjfs/unpkgdeb.desktop</file>
     </qresource>
 </RCC>

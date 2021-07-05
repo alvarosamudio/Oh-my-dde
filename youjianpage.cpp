@@ -31,35 +31,31 @@ YouJianPage::YouJianPage(QWidget *parent) :
 
     //新建文档列表
     youjianlist<<(files);
-    youjianlist<<("DOC 文档.doc");
-    youjianlist<<("DOCX 文档.docx");
-    youjianlist<<("PPT 演示文稿.ppt");
-    youjianlist<<("PPTX 演示文稿.pptx");
-    youjianlist<<("XLS 工作表.xls");
-    youjianlist<<("XLSX 工作表.xlsx");
-    youjianlist<<("PDF 文档.pdf");
-    youjianlist<<("TXT 文档.txt");
-    youjianlist<<("AI 图像.ai");
-    youjianlist<<("SVG 图像.svg");
-    youjianlist<<("PSD 图像.psd");
+    youjianlist<<(tr("DOC document.doc"));
+    youjianlist<<(tr("DOCX document.docx"));
+    youjianlist<<(tr("PPT presentation.ppt"));
+    youjianlist<<(tr("PPTX presentation.pptx"));
+    youjianlist<<(tr("XLS worksheet.xls"));
+    youjianlist<<(tr("XLSX worksheetlsx"));
+    youjianlist<<(tr("PDF document.pdf"));
+    youjianlist<<(tr("TXT document.txt"));
+    youjianlist<<(tr("AI image.ai"));
+    youjianlist<<(tr("SVG image.svg"));
+    youjianlist<<(tr("PSD image.psd"));
     //更多工具列表
-    gsjulist<<"右键刷新";
-    gsjulist<<"Hash检验";
-    gsjulist<<"显示隐藏文件";
-    gsjulist<<"彻底删除";
-    gsjulist<<"复制路径";
-    gsjuflist<<"Refresh.desktop";
-    gsjuflist<<"Hash.desktop";
-    gsjuflist<<"Show.desktop";
-    gsjuflist<<"del.desktop";
-    gsjuflist<<"copyfilepath.desktop";
-
+    gsjulist<<tr("Right click to refresh");
+    gsjulist<<tr("Hash test");
+    gsjulist<<tr("Show hidden files");
+    gsjulist<<tr("Delete completely");
+    gsjulist<<tr("Copy Path");
+    gsjulist<<tr("Unpack(deb) to current directory");
+    gsjuflist<<tr("Refresh.desktop");
+    gsjuflist<<tr("Hash.desktop");
+    gsjuflist<<tr("Show.desktop");
+    gsjuflist<<tr("del.desktop");
+    gsjuflist<<tr("copyfilepath.desktop");
+    gsjuflist<<tr("unpkgdeb.desktop");
     //获得oem-menuextensions目录下所有文件
-    dirpath = "/usr/share/deepin/dde-file-manager/oem-menuextensions";
-    QDir dir_2(dirpath);
-    nameFilters.clear();
-    nameFilters << "*.desktop";
-    files_2 = dir_2.entryList(nameFilters, QDir::Files|QDir::Readable, QDir::Name);
     for (int i=0;i<30;i++) {
         youjian[i]=new QCheckBox;
     }
@@ -69,6 +65,13 @@ YouJianPage::YouJianPage(QWidget *parent) :
 }
 void YouJianPage::updateGsjuUI()
 {
+    QString dirpath = "/usr/share/deepin/dde-file-manager/oem-menuextensions";
+    QDir dir_2(dirpath);
+    QStringList nameFilters;
+    nameFilters.clear();
+    nameFilters << "*.desktop";
+    files_2 = dir_2.entryList(nameFilters, QDir::Files|QDir::Readable, QDir::Name);
+
     int x=0,y=0;
     ui->gridLayout_7->setColumnStretch(0,1);
     ui->gridLayout_7->setColumnStretch(1,1);
@@ -103,7 +106,9 @@ void YouJianPage::updateGsjuUI()
                 cmd->start("pkexec mv -f /tmp/youjian/"+gsju[i]->statusTip()+" /usr/share/deepin/dde-file-manager/oem-menuextensions/"+gsju[i]->statusTip());
                 gsjuCheckState[i]=true;
                 cmd->waitForStarted();
-            }});
+            }
+            updateGsjuUI();
+        });
     }
 }
 void YouJianPage::updateYoujianUI()
@@ -125,7 +130,7 @@ void YouJianPage::updateYoujianUI()
         }
         if(i==youjianlist.count())
         {
-            youjianplus->setPlaceholderText("自定义 文件名.后缀");
+            youjianplus->setPlaceholderText(tr("Customize File Name. Suffix"));
             ui->gridLayout_3->addWidget(youjianplus,y,x);
             break;
         }
